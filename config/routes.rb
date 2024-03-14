@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  resources :users
-  get 'users/new'
+  devise_for :users
 
-  get "/articles", to: "articles#index"
+  resources :users
+  resources :articles, only: [:index, :new, :create]
+
+  get 'users/new', to: 'users#new'
 end
+
